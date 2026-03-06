@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shota Matsu — Portfolio Website
 
-## Getting Started
+個人ポートフォリオサイト。Next.js 15 + TypeScript + Tailwind CSS v4 で構築。
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## コンセプト
+
+**「エンジニアの技術力 × 人柄」を3層のターゲットに伝えるポートフォリオ**
+
+| ターゲット | 期待するアクション |
+|---|---|
+| 企業の採用担当者 | スカウト・問い合わせ |
+| フリーランス案件を振ってくれる人 | 問い合わせ・SNS経由でDM |
+| 友人・知人 | 「こんな人なんだ」という理解 |
+
+---
+
+## デザイン方針
+
+- **トーン＆マナー:** モダン・ミニマル（余白重視、洗練された印象）
+- **モード:** ダークモード固定
+- **カラーパレット:**
+  - Background: `#0A0A0A`
+  - Surface: `#111111` / `#1A1A1A`
+  - Text primary: `#FFFFFF`
+  - Text secondary: `#A1A1AA`
+  - Accent: `#6366F1` (Indigo)
+  - Border: `#27272A`
+
+---
+
+## サイト構造
+
+```
+/                    ← Home (1ページSPA)
+  ├── #hero          Hero: キャッチコピー + CTA
+  ├── #about         自己紹介
+  ├── #skills        スキルセット
+  ├── #works         制作実績（カード一覧、/worksへリンク）
+  ├── #career        職歴タイムライン
+  ├── #hobbies       趣味・人柄
+  └── #contact       お問い合わせフォーム
+
+/works               ← 実績一覧ページ
+/works/[slug]        ← 実績詳細ページ
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 技術スタック
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| カテゴリ | 採用技術 |
+|---|---|
+| Framework | Next.js 15 (App Router) + TypeScript |
+| Styling | Tailwind CSS v4 |
+| Animation | Framer Motion |
+| Email | Resend + Server Actions |
+| Deploy | Vercel |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## セットアップ
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm install
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+[http://localhost:3000](http://localhost:3000) で確認できます。
 
-## Deploy on Vercel
+### 環境変数
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`.env.local` を作成して以下を設定するとお問い合わせフォームのメール送信が有効になります。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+RESEND_API_KEY=your_resend_api_key
+CONTACT_EMAIL=your@email.com
+```
+
+---
+
+## コンテンツの更新方法
+
+| ファイル | 内容 |
+|---|---|
+| `src/data/career.ts` | 職歴 |
+| `src/data/works.ts` | 制作実績 |
+| `src/data/skills.ts` | スキルセット |
+| `src/data/hobbies.ts` | 趣味 |
+| `public/` | 画像ファイル |
+
+---
+
+## デプロイ
+
+Vercel へのデプロイは以下のボタンから：
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
